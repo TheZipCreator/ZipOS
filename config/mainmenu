@@ -1,0 +1,2 @@
+menu = {"Settings", "System", "Apps"}
+links = {"set", "apps", "dynamic_apps"}

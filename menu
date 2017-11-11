@@ -1,0 +1,49 @@
+menu = {}
+links = {}
+cursor = 1
+apoint = 9
+shell.run("config/mainmenu")
+term.setBackgroundColor(colors.white)
+term.clear()
+term.setTextColor(colors.lime)
+function drawMenu()
+  for i=1,#menu do
+    if(i == cursor) then
+      centertext("["..menu[i].."]", apoint+i)
+    else
+      centertext(" "..menu[i].." ", apoint+i)
+    end
+  end
+  term.setCursorPos(1, 19)
+  term.write("Press 'b' to go back")
+  term.setCursorPos(1, 18)
+  term.write("Computer Name:".. os.getComputerLabel())
+end
+drawMenu()
+while true do
+  event, key = os.pullEvent("key")
+  if(key == keys.up) then
+    cursor = cursor-1
+  end
+  if(key == keys.down) then
+    cursor = cursor+1
+  end
+  if(key == keys.enter) then
+    apoint = 9
+    for i=1, #links do
+      if(i == cursor) then
+        shell.run(links[i])
+        term.setBackgroundColor(colors.white)
+        term.clear()
+      end
+    end
+  end
+  if(key == keys.b) then
+    term.clear()
+    cursor = 1
+    shell.run("/config/mainmenu")
+  end
+  drawMenu()
+  sleep(0.1)
+end
+

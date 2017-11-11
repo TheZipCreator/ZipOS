@@ -1,0 +1,10 @@
+local games = fs.list("i_apps")
+cursor = 1
+menu = {}
+links = {}
+local i=1
+for _, file in ipairs(games) do
+  menu[i] = file
+  links[i] = "i_apps/"..file
+  i = i+1
+end

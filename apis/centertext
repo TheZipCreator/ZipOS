@@ -1,0 +1,4 @@
+function centertext(text, y) 
+  term.setCursorPos(25-(#text /2), y)
+  term.write(text)
+end

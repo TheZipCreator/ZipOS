@@ -1,0 +1,10 @@
+local games = fs.list("disk")
+cursor = 1
+menu = {}
+links = {}
+local i=1
+for _, file in ipairs(disk) do
+  menu[i] = file
+  links[i] = "disk/"..file
+  i = i+1
+end

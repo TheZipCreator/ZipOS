@@ -1,0 +1,2 @@
+menu = {"Set Computer Name", "Delete Apps"}
+links = {"setname", "deleteapps"}

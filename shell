@@ -1,0 +1,16 @@
+term.setBackgroundColor(colors.black)
+term.clear()
+term.setCursorPos(1, 1)
+print("ZipOS Shell 1.0")
+print("Type 'quit' to quit")
+while true do
+  term.setTextColor(colors.orange)
+  term.write(shell.dir())
+  term.setTextColor(colors.cyan)
+  term.write(">")
+  term.setTextColor(colors.lime)
+  local command = read()
+  if(command == "quit") then shell.run("menu") end
+  shell.run(command)
+end
+
