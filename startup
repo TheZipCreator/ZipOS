@@ -1,18 +1,47 @@
 os.pullEvent = os.pullEventRaw
+menu = {}
+links = {}
+cursor = 1
+apoint = 9
 dofile("apis/centertext")
+shell.run("bootimages")
 term.setBackgroundColor(colors.black)
 term.clear()
-sleep(0.1)
-term.setBackgroundColor(colors.gray)
-term.clear()
-sleep(0.1)
-term.setBackgroundColor(colors.lightGray)
-term.clear()
-sleep(0.1)
-term.setBackgroundColor(colors.white)
-term.clear()
-sleep(0.1)
-term.setTextColor(colors.lime)
-centertext("ZipOS", 9)
-sleep(5)
-shell.run("menu")
+term.setTextColor(colors.white)
+function drawMenu()
+  for i=1,#menu do
+    if(i == cursor) then
+      centertext("["..menu[i].."]", apoint+i)
+    else
+      centertext(" "..menu[i].." ", apoint+i)
+    end
+  end
+  centertext("Select a boot image", 1)
+  term.setCursorPos(1, 19)
+  term.write("Press 'b' to go back")
+  term.setCursorPos(1, 18)
+  term.write("Computer Name:".. os.getComputerLabel())
+end
+drawMenu()
+while true do
+  event, key = os.pullEvent("key")
+  if(key == keys.up) then
+    cursor = cursor-1
+  end
+  if(key == keys.down) then
+    cursor = cursor+1
+  end
+  if(key == keys.enter) then
+    apoint = 9
+    for i=1, #links do
+      if(i == cursor) then
+        term.setBackgroundColor(colors.black)
+        term.clear()
+        shell.run(links[i])
+      end
+    end
+  end
+  drawMenu()
+  sleep(0.1)
+end
+
