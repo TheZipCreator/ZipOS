@@ -20,7 +20,9 @@ function drawMenu()
   term.setCursorPos(1, 19)
   term.write("Press 'b' to go back")
   term.setCursorPos(1, 18)
+  if(os.getComputerLabel() ~= nil) then
   term.write("Computer Name:".. os.getComputerLabel())
+  end
 end
 drawMenu()
 while true do
